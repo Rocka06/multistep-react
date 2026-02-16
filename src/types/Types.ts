@@ -24,8 +24,8 @@ export type PickupData = {
 
 export type Order = {
     items: Item[],
-    orderer: OrdererData,
-    isPickup: boolean,
-    deliveryData: DeliveryData,
-    pickupData: PickupData
+    orderer?: OrdererData,
+    isPickup?: boolean,
+    deliveryData?: DeliveryData,
+    pickupData?: PickupData
 }

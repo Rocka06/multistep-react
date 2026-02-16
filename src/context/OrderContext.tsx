@@ -2,14 +2,14 @@ import { createContext, type ReactNode, useState, useContext } from "react";
 import type { Order } from "../types/Types";
 
 interface OrderContextType {
-    order: Order | undefined;
-    setOrder: (value: Order) => void
+    order: Order;
+    setOrder: React.Dispatch<React.SetStateAction<Order>>;
 }
 
 const OrderContext = createContext<OrderContextType | undefined>(undefined);
 
 export function OrderProvider({ children }: { children: ReactNode }) {
-    const [order, setOrder] = useState<Order>();
+    const [order, setOrder] = useState<Order>({ items: [] });
 
     return (
         <OrderContext.Provider value={{ order, setOrder }}>
