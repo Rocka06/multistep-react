@@ -19,7 +19,7 @@ export type DeliveryData = {
 }
 
 export type PickupData = {
-    store: Store
+    store: Store | null
 }
 
 export type Order = {

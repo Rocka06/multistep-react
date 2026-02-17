@@ -44,7 +44,7 @@ export default function ItemStep() {
                     value={selectedItemName}
                     onChange={(e) => setSelectedItemName(e.target.value)}
                 >
-                    <option value="" disabled>Select item...</option>
+                    <option value="" disabled>Válassz...</option>
                     {items.map((item) => (
                         <option key={item.name} value={item.name}>
                             {item.name}
@@ -57,16 +57,16 @@ export default function ItemStep() {
                     onClick={handleAdd}
                     disabled={!selectedItemName}
                 >
-                    Add
+                    Hozzáadás
                 </button>
             </div>
             <div className="overflow-x-auto rounded-box border border-base-content/5 bg-base-100">
                 <table className="table">
                     <thead>
                         <tr>
-                            <th>Name</th>
-                            <th>Description</th>
-                            <th>Action</th>
+                            <th>Név</th>
+                            <th>Leírás</th>
+                            <th>Művelet</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -76,7 +76,7 @@ export default function ItemStep() {
                                     <th>{element.name}</th>
                                     <th>{element.description}</th>
                                     <th className="text-center">
-                                        <button className="btn btn-error" onClick={() => handleRemove(index)}>Delete</button>
+                                        <button className="btn btn-error" onClick={() => handleRemove(index)}>Törlés</button>
                                     </th>
                                 </tr>
                             )}
