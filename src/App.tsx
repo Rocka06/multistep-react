@@ -4,6 +4,7 @@ import ReceiptStep from "./components/ReceiptStep";
 import DeliveryStep from "./components/DeliveryStep";
 import SummaryStep from "./components/SummaryStep";
 import StepProgress from "./components/StepProgress";
+import { useOrder } from "./context/OrderContext";
 
 const steps = [
 	{ name: "Termékek" },
@@ -14,6 +15,8 @@ const steps = [
 
 export default function App() {
 	const [step, setStep] = useState<number>(0);
+	const [isConfirmed, setIsConfirmed] = useState<boolean>(false);
+	const { order } = useOrder();
 
 	const prevStep = () => {
 		if (step > 0)
@@ -23,6 +26,24 @@ export default function App() {
 	const nextStep = () => {
 		if (step < 3)
 			setStep(step + 1);
+	}
+
+	const handleConfirm = () => {
+		setIsConfirmed(true);
+		console.log(order);
+	}
+
+	if (isConfirmed) {
+		return (
+			<div className="min-h-screen bg-base-300 flex items-center justify-center p-4">
+				<div className="card w-full max-w-3xl bg-base-100 shadow-2xl">
+					<div className="card-body">
+						<h1 className="card-title text-2xl">Rendelés megerősítve!</h1>
+						<p>Az adatok a konzolban találhatók.</p>
+					</div>
+				</div>
+			</div>
+		);
 	}
 
 	return (
@@ -66,6 +87,7 @@ export default function App() {
 							<button
 								type="button"
 								className="btn btn-success"
+								onClick={handleConfirm}
 							>
 								Rendelés véglegesítése
 							</button>
