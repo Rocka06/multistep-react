@@ -9,7 +9,7 @@ interface OrderContextType {
 const OrderContext = createContext<OrderContextType | undefined>(undefined);
 
 export function OrderProvider({ children }: { children: ReactNode }) {
-    const [order, setOrder] = useState<Order>({ items: [] });
+    const [order, setOrder] = useState<Order>({ items: [], isPickup: false, pickupData: { store: { name: "", address: "" } }, deliveryData: { address: "" }, orderer: { name: "", email: "", mobile: "" } });
 
     return (
         <OrderContext.Provider value={{ order, setOrder }}>

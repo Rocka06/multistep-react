@@ -72,7 +72,7 @@ export default function ItemStep() {
                     <tbody>
                         {
                             order.items.map((element, index) =>
-                                <tr>
+                                <tr key={index}>
                                     <th>{element.name}</th>
                                     <th>{element.description}</th>
                                     <th className="text-center">

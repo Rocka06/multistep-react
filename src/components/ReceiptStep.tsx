@@ -4,21 +4,13 @@ import { useOrder } from "../context/OrderContext";
 export default function ReceiptStep() {
     const { order, setOrder } = useOrder();
 
-    if (!order.orderer) {
-        setOrder({
-            ...order,
-            orderer: { email: "", mobile: "", name: "" }
-        })
-    }
-
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
 
-        if (order.orderer)
-            setOrder({
-                ...order,
-                orderer: { ...order.orderer, [name]: value }
-            });
+        setOrder({
+            ...order,
+            orderer: { ...order.orderer, [name]: value }
+        });
     };
 
     return (
@@ -30,7 +22,7 @@ export default function ReceiptStep() {
                 <input
                     type="text"
                     name="name"
-                    value={order.orderer?.name}
+                    value={order.orderer.name}
                     onChange={handleChange}
                     className="input input-bordered w-full"
                 />
@@ -43,7 +35,7 @@ export default function ReceiptStep() {
                 <input
                     type="email"
                     name="email"
-                    value={order.orderer?.email}
+                    value={order.orderer.email}
                     onChange={handleChange}
                     className="input input-bordered w-full"
                 />
@@ -56,7 +48,7 @@ export default function ReceiptStep() {
                 <input
                     type="text"
                     name="mobile"
-                    value={order.orderer?.mobile}
+                    value={order.orderer.mobile}
                     onChange={handleChange}
                     className="input input-bordered w-full"
                 />

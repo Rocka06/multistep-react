@@ -11,19 +11,8 @@ const stores: Store[] = [
 export default function DeliveryStep() {
     const { order, setOrder } = useOrder();
 
-    if (!order.orderer) {
-        setOrder({
-            ...order,
-            isPickup: false,
-            pickupData: { store: null }
-        })
-    }
-
     const handleTypeChange = (e: ChangeEvent<HTMLInputElement>) => {
         const { checked } = e.target;
-
-        if (!order.orderer)
-            return;
 
         setOrder({
             ...order,
@@ -72,7 +61,7 @@ export default function DeliveryStep() {
                         </label>
                         <select
                             className="w-full select"
-                            value={order.pickupData?.store?.name}
+                            value={order.pickupData.store.name}
                             onChange={(e) => handlePickupChange(e.target.value)}>
                             {
                                 stores.map((x, i) =>
@@ -90,7 +79,7 @@ export default function DeliveryStep() {
                             <input
                                 type="text"
                                 name="name"
-                                value={order.deliveryData?.address}
+                                value={order.deliveryData.address}
                                 onChange={handleDeliveryChange}
                                 className="input input-bordered w-full"
                             />

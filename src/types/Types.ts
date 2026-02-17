@@ -19,13 +19,13 @@ export type DeliveryData = {
 }
 
 export type PickupData = {
-    store: Store | null
+    store: Store
 }
 
 export type Order = {
     items: Item[],
-    orderer?: OrdererData,
-    isPickup?: boolean,
-    deliveryData?: DeliveryData,
-    pickupData?: PickupData
+    orderer: OrdererData,
+    isPickup: boolean,
+    deliveryData: DeliveryData,
+    pickupData: PickupData
 }
