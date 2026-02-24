@@ -84,13 +84,27 @@ export default function App() {
 								Tovább
 							</button>
 						) : (
-							<button
-								type="button"
-								className="btn btn-success"
-								onClick={handleConfirm}
-							>
-								Rendelés véglegesítése
-							</button>
+							<div>
+								<label htmlFor="my_modal_6" className="btn btn-success">Rendelés véglegesítése</label>
+
+								<input type="checkbox" id="my_modal_6" className="modal-toggle" />
+								<div className="modal" role="dialog">
+									<div className="modal-box">
+										<h3 className="text-lg font-bold">Rendelés leadása</h3>
+										<p className="py-4">Biztos hogy véglegesíted a rendelést?</p>
+										<div className="flex justify-between">
+											<label htmlFor="my_modal_6" className="btn btn-error">Nem</label>
+											<button
+												type="button"
+												className="btn btn-success"
+												onClick={handleConfirm}
+											>
+												Véglegesítés
+											</button>
+										</div>
+									</div>
+								</div>
+							</div>
 						)}
 					</div>
 				</div>

@@ -1,15 +1,11 @@
 import { type ChangeEvent } from "react";
 import { useOrder } from "../context/OrderContext";
 import type { Store } from "../types/Types";
-
-const stores: Store[] = [
-    { name: "GSM", address: "Budapest" },
-    { name: "Üzlet", address: "Budapest" },
-    { name: "Pláza", address: "Budapest" }
-];
+import { useStore } from "../context/StoreContext";
 
 export default function DeliveryStep() {
     const { order, setOrder } = useOrder();
+    const { stores } = useStore();
 
     const handleTypeChange = (e: ChangeEvent<HTMLInputElement>) => {
         const { checked } = e.target;
@@ -21,7 +17,7 @@ export default function DeliveryStep() {
     };
 
     const handlePickupChange = (name: string) => {
-        const filtered = stores.find(x => x.name === name);
+        const filtered = stores?.find(x => x.name === name);
         const store: Store = filtered ? filtered : { name: "", address: "" }
 
         setOrder({
@@ -56,19 +52,33 @@ export default function DeliveryStep() {
             {
                 order.isPickup ?
                     <div className="form-control">
-                        <label className="label">
-                            <span className="label-text">Felvételi pont</span>
-                        </label>
-                        <select
-                            className="w-full select"
-                            value={order.pickupData.store.name}
-                            onChange={(e) => handlePickupChange(e.target.value)}>
-                            {
-                                stores.map((x, i) =>
-                                    <option key={i} value={x.name}>{x.name}</option>
-                                )
-                            }
-                        </select>
+                        <label htmlFor="my_modal_6" className="btn btn-primary">Felvételi pont kiválasztása</label>
+
+                        <input type="checkbox" id="my_modal_6" className="modal-toggle" />
+                        <div className="modal" role="dialog">
+                            <div className="modal-box">
+                                <h3 className="text-lg font-bold">Felvételi pont kiválasztása</h3>
+                                <p className="py-4">
+                                    <select
+                                        className="w-full select"
+                                        value={order.pickupData.store.name}
+                                        onChange={(e) => handlePickupChange(e.target.value)}>
+                                        {
+                                            stores?.map((x, i) =>
+                                                <option key={i} value={x.name}>{x.name}</option>
+                                            )
+                                        }
+                                    </select>
+                                    <p className="text-lg mt-5">Név: {order.pickupData?.store.name}</p>
+                                    <p className="text-lg">Cím: {order.pickupData?.store.address}</p>
+                                </p>
+                                <div className="modal-action">
+                                    <label htmlFor="my_modal_6" className="btn">Close</label>
+                                </div>
+                            </div>
+                        </div>
+
+
                     </div>
                     :
                     <>
